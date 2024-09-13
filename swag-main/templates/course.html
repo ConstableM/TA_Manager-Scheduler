@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+<link rel="stylesheet" href="{% static 'Format.css' %}" type="text/css">
+</head>
+<body>
+<div class="Grid_Container">
+    <div class = "Create_Box">
+{#        Create Form       #}
+        <form action="/course/" method="post" id="create_form"> {% csrf_token %}
+
+        </form>
+    </div>
+
+    <div class="List_Box" >
+             <div class="Scrollable_Container">
+                 {% for course in courses %}
+                    <div class="User_Info_Box">
+                        <input type="checkbox" id="checkbox_{{ course }}" name="user_select" value="{{ course }}" class="User_Checked_Box">
+                        <label for="checkbox_{{ course }}" class="User_Info_Font">
+                            <span class="User_Info_Font">
+                                {{ course }}
+                            </span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+{#            Remove Function        #}
+    </div>
+    <div>
+    </div>
+</div>
+
+
+</body>
+</html>

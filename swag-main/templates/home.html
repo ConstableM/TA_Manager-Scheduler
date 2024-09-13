@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            position:relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .white-box {
+            width: 70%;
+            margin-left: 70px;
+            margin-bottom: 70px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .notifications {
+            border: 1px solid #ccc;
+            padding: 70px;
+            background-color: #d8d8d8;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: flex-start; /* Align buttons to the start of the container */
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button {
+            width: 70px;
+            height: 30px;
+            padding: 34px 80px;
+            background-color: #d8d8d8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 100px;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-left: 120px;
+            margin-top: 140px;
+            float: left;
+            top: 120px;
+            left: 100px;
+
+        }
+
+
+        .logo {
+            position: absolute;
+            top: 120px;
+            left: 120px;
+            padding: 10px 20px;
+            background-color: #d8d8d8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 class = "welcome"> Welcome! </h1>
+     <div class="container">
+        <div class="white-box">
+            <div class="notifications">
+                <h3>Notifications</h3>
+                <!-- Add your notification content here -->
+            </div>
+        </div>
+
+         <table>
+             <tr>
+                 <td>
+                     <div class="buttons">
+                         <a href="{% url 'Create' %}" class="button">Create</a>
+                         <a href="{% url 'Account' %}" class="button">Account</a>
+                         <a href="{% url 'Course' %}" class="button">Course </a>
+                         <a href="{% url 'Section' %}" class="button">Section </a>
+                         <a href="{% url 'Log Out' %}" class="button">Log Out</a>
+                     </div>
+                 </td>
+             </tr>
+         </table>
+    </div>
+</body>
+</html>

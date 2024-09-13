@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+<link rel="stylesheet" href="{% static 'Format.css' %}" type="text/css">
+</head>
+<body>
+<div class="Grid_Container">
+    <div class = "Create_Box">
+{#        Create Form       #}
+        <form action="/section/" method="post" id="create_form"> {% csrf_token %}
+            {% for field in form %}
+                <div class ='Info_Div'>
+                    <label>{{ field.label }}</label>
+                    <p>{{ field }}</p>
+                </div>
+            {% endfor %}
+            <div class="Button_Div">
+                <button type="submit" name="create_section" class="Submit_Button">CREATE</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="List_Box" >
+     <form action="/section/" method="post" id="remove_form">
+             <div class="Scrollable_Container">
+                 {% for section in sectionList %}
+                    <div class="User_Info_Box">
+                        <input type="checkbox" id="checkbox_{{ section }}" name="user_select" value="{{ section }}" class="User_Checked_Box">
+                        <label for="checkbox_{{ section }}" class="User_Info_Font">
+                            <span class="User_Info_Font">
+                                {{ section }}
+                            </span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+             <div class="Remove_Button_Div">
+                <button type="submit" name="remove_section" class="Submit_Button">REMOVE</button>
+            </div>
+     </form>
+    </div>
+    <div>
+    </div>
+</div>
+
+
+</body>
+</html>

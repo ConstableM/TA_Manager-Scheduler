@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+<link rel="stylesheet" href="{% static 'Format.css' %}" type="text/css">
+</head>
+<body>
+<div class="Grid_Container">
+    <div class = "Create_Box">
+        <form action="/account/" method="post" id="create_form"> {% csrf_token %}
+            <div class="Info_Div">
+                <label for="username" class="Info_Font">USERNAME</label>
+                <input type="text" name="username" class="Info_Filler" required>
+            </div>
+
+            <div class="Info_Div">
+                <label for="password" class="Info_Font">PASSWORD</label>
+                <input type="password" name="password" class="Info_Filler" required>
+            </div>
+
+            <div class="Info_Div">
+               <label for="first_name" class="Info_Font">FIRST NAME</label>
+                <input type="text" name="first_name"  class="Info_Filler" required>
+            </div>
+
+            <div class="Info_Div">
+                <label for="last_name" class="Info_Font">LAST NAME</label>
+                <input type="text" name="last_name" class="Info_Filler" required>
+            </div>
+
+            <div class="Info_Div">
+                <label for="email" class="Info_Font">EMAIL</label>
+                <input type="email" name="email"  class="Info_Filler" required>
+            </div>
+
+            <div class="Info_Div">
+                <label for="address" class="Info_Font">ADDRESS</label>
+                <input type="text" name="address" class="Info_Filler" required>
+            </div>
+
+              <div class="Info_Div">
+                <label for="phone_number" class="Info_Font">PHONE NUMBER</label>
+                <input type="tel" name="phone_number" class="Info_Filler" required>
+            </div>
+
+            <div class="Info_Div">
+                <label for="roles" class="Info_Font">Roles</label>
+                <br>
+                <select name="roles" id="roles" class="Selection_Box">
+                    <option value="admin">Admin</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="ta">TA</option>
+                </select>
+            </div>
+
+            <div class="Button_Div">
+                <button type="submit" name="create_user" class="Submit_Button">CREATE</button>
+            </div>
+        </form>
+        {% if message == "Account Created" %}
+            <div class="Message Create Success">{{ message }}</div>
+        {% elif message == "Account already exists" %}
+            <div class="Message Create Error">{{ message }}</div>
+        {% endif %}
+    </div>
+
+    <div class="List_Box" >
+        <form action="/account/" method="post" id="remove_form">
+            {% csrf_token %}
+             <div class="Scrollable_Container">
+                 {% for user in userList %}
+                    <div class="User_Info_Box">
+                        <input type="checkbox" id="checkbox_{{ user }}" name="user_select" value="{{ user }}" class="User_Checked_Box">
+                        <label for="checkbox_{{ user }}" class="User_Info_Font">
+                            <span class="User_Info_Font">
+                                {{ user }}
+                            </span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="Remove_Button_Div">
+                <button type="submit" name="remove_user" class="Submit_Button">REMOVE</button>
+            </div>
+        </form>
+        {% if message == "Account(s) removed successful" %}
+            <span class="Message Remove Success">{{ message }}</span>
+        {% elif message == "No user selected" or message == "Account removal failed, try again" %}
+            <span class="Message Remove Error">{{ message }}</span>
+        {% endif %}
+    </div>
+    <div>
+    </div>
+</div>
+
+</body>
+</html>
